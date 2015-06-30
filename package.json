@@ -1,0 +1,71 @@
+{
+  "name": "Package-Tools",
+  "version": "0.0.1",
+  "author": "jaxchow",
+  "description": "npm package GUI tools ",
+  "homepage": "http://github.com/jaxchow/package-tools",
+  "main": "build/browser.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jaxchow/package-tools"
+  },
+  "bugs": "https://github.com/jaxchow/package-tools/issues",
+  "scripts": {
+    "start": "gulp",
+    "release": "gulp release",
+    "reset": "gulp reset"
+  },
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  ],
+  "electron-version": "0.27.0",
+  "dependencies": {
+    "ansi-to-html": "0.3.0",
+    "any-promise": "^0.1.0",
+    "async": "^0.9.0",
+    "bluebird": "^2.9.24",
+    "bugsnag-js": "^2.4.7",
+    "classnames": "^1.2.0",
+    "deep-extend": "^0.4.0",
+    "exec": "0.2.0",
+    "marked": "^0.3.3",
+    "mixpanel": "0.2.0",
+    "mkdirp": "^0.5.0",
+    "node-uuid": "^1.4.3",
+    "npm": "^2.9.1",
+    "object-assign": "^2.0.0",
+    "parseUri": "^1.2.3-2",
+    "react": "^0.13.1",
+    "react-bootstrap": "^0.20.3",
+    "react-router": "^0.13.2",
+    "request": "^2.55.0",
+    "request-progress": "^0.3.1",
+    "resolve": "^1.1.6",
+    "rimraf": "^2.3.2",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "babel": "^5.1.10",
+    "gulp": "^3.8.11",
+    "gulp-babel": "^5.1.0",
+    "gulp-changed": "^1.2.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-cssmin": "^0.1.6",
+    "gulp-download-electron": "^0.0.5",
+    "gulp-if": "^1.2.5",
+    "gulp-insert": "^0.4.0",
+    "gulp-less": "^3.0.2",
+    "gulp-livereload": "^3.8.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-shell": "^0.4.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-util": "^3.0.4",
+    "minimist": "^1.1.1",
+    "react-tools": "^0.13.1",
+    "run-sequence": "^1.0.2",
+    "source-map-support": "^0.2.10"
+  }
+}

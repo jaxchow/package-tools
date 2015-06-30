@@ -1,0 +1,17 @@
+.DS_Store
+.bowerrc
+.git/*
+node_modules
+node_modules/*
+thirdparty
+thirdparty/*
+build
+build/*
+cache
+cache/*
+dist
+dist/*
+downloaded-electron
+downloaded-electron/*
+npm-debug.log
+*.un~
