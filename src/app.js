@@ -14,7 +14,7 @@ var app = remote.require('app');
 var request = require('request');
 
 //webUtil.addWindowSizeSaving();
-webUtil.addLiveReload();
+//webUtil.addLiveReload();
 webUtil.disableGlobalBackspace();
 
 router.run(Handler => React.render(<Handler/>, document.body));

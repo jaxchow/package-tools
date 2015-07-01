@@ -26,7 +26,7 @@ var AppPackageReadMePane = React.createClass({
 	var textContent="no readme!";
 	if(fs.existsSync(path.join(projPath,'README.md'))){
 		textContent=fs.readFileSync(path.join(projPath,"README.md")).toString()
-	}else if(fs.existsSync(path.join(dir,'README'))){
+	}else if(fs.existsSync(path.join(projPath,'README'))){
 		textContent=fs.readFileSync(path.join(projPath,"README")).toString()
 	}
 	this.setState({

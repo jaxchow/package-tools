@@ -13,26 +13,19 @@ export default assign(Object.create(EventEmitter.prototype),{
   NPM_PROJECT_EVENT:'npm_project_event',
   _logs:{
   },
-  execTask (taskName,name,cwd){
+  runTask (taskName,name,cwd){
 	  var self=this;
-	  //var self._logs[name]=[];
-	return util.execTask(['npm',taskName],{cwd:cwd}).then(function(process){
-
+	  self._logs[name]=self._logs[name]|| new Array();
+	return util.execTask(['npm','run',taskName],{cwd:path.resolve(cwd)}).then(function(process){
 		process.stderr.on('data',function(chunk){
-			self.emit(self.NPM_LOGS_EVENT,{text:chunk});
-		//	self._logs[name].push(_convert.toHtml(self._escape(chunk)))
+			self._logs[name].push(_convert.toHtml(chunk));
+			self.emit(self.NPM_LOGS_EVENT,{text:name});
 		});
 		process.stdout.on('data',function(chunk){
-			self.emit(self.NPM_LOGS_EVENT,{text:chunk});
-		//	self._logs[name].push(_convert.toHtml(self._escape(chunk)))
+			self._logs[name].push(_convert.toHtml(self._escape(chunk)));
+			self.emit(self.NPM_LOGS_EVENT,{text:name});
 		});
 	})
-  },
-  start (dirPath,name){
-	return this.execTask('start',name,path.resolve(dirPath));
-  },
-  test (dirPath,name){
-	return this.execTask('test',name,path.resolve(dirPath));
   },
   add (dirPath){
 	let self=this;
@@ -47,13 +40,16 @@ export default assign(Object.create(EventEmitter.prototype),{
 	localStorage.setItem('projects',JSON.stringify(projects));
 	self.emit(self.NPM_PROJECT_EVENT,{projects:projects});
   },
-  _escape: function (html) {
+   _escape (html) {
     var text = document.createTextNode(html);
     var div = document.createElement('div');
     div.appendChild(text);
     return div.innerHTML;
   },
-  logs:function(taskName){
+  remove (){
+
+  },
+  getLogs (taskName){
 	return this._logs[taskName];
   }
 });

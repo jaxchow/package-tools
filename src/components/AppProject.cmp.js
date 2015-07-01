@@ -1,3 +1,6 @@
+var remote = require('remote');
+var Menu = remote.require('menu');
+var MenuItem = remote.require('menu-item');
 var React = require('react/addons');
 var Router = require('react-router');
 var NpmUtils= require("../utils/NpmUtils");
@@ -5,11 +8,32 @@ var Utils = require('../utils/Util');
 
 
 var ProjectItemCmp =React.createClass({
+	getInitialState:function(){
+		let contextMenuTpl=[{
+				label: '删除',
+				accelerator: 'Command+Z',
+				selector: 'undo:'
+			  },{
+				type: 'separator'
+			  },{
+				label: 'Redo',
+				accelerator: 'Shift+Command+Z',
+				selector: 'redo:'
+			  }];
+		return  {
+			memu:Menu.buildFromTemplate(contextMenuTpl)
+		}
+	},
+	//TODO 未实现右键菜单功能 
+	handlerContextMenu:function(e){
+		  e.preventDefault();
+		  this.statue.menu.popup(remote.getCurrentWindow());
+	},
 	render:function(){
 		var proj=this.props.project;
 		return (
 		  <Router.Link to="projectDetail" query={{path:proj.path}} params={{name:proj.name}}>
-			<li className="project-item">
+			<li className="project-item" oncontextmenu={this.handlerContextMenu}>
 				<h5>{proj.name}<small>({proj.version})</small></h5>
 				<span>{proj.path}</span>
 			</li>
@@ -99,8 +123,6 @@ var AppPackageToolbarCmp = React.createClass({
 	  name:''
     };
   },
-  componentDidMount: function() {
-  },
 	/**
 	 * 执行命令
 	 * @param  {[type]} event [description]
@@ -108,16 +130,21 @@ var AppPackageToolbarCmp = React.createClass({
 	 * todo: NpmUtils.runTask 方法无法正常执行
 	 */
   handlerClick:function(event){
+	let self=this;
 	let target=event.currentTarget;
 	let cmd=target.dataset.script;
-	let params=this.context.router.getCurrentParams();
-	NpmUtils[cmd](this.props.dir,params.name);
-	this.context.router.transitionTo('pkgLog', {name: params.name});
+	let router=self.context.router;
+	let params=router.getCurrentParams();
+	this.context.router.transitionTo('pkgLog', router.getCurrentParams(),router.getCurrentQuery());
+	//NpmUtils[cmd](self.props.dir,params.name);
+	NpmUtils.runTask(cmd,params.name,self.props.dir);	
   },
   render: function () {
     let content;
 	let btns;
+	// 过滤preXXX postXXX 所有script
 	btns=Object.keys(this.props.scripts).map(scrp => {
+		if(/^pre|post\w+/.test(scrp)) return ;
 		return	<button className="btn btn-default" type="button" data-script={scrp} onClick={this.handlerClick}><span className="glyphicon glyphicon-align-left">{scrp}</span></button>
 	});
 

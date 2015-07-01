@@ -1,5 +1,6 @@
 var React = require('react/addons');
 var Router = require('react-router');
+var NotFoundRoute=Router.NotFoundRoute;
 //var Setup = require('./components/Setup.react');
 var AppLayoutCmp = require('../components/AppLayout.cmp');
 var AppContentCmp = require('../components/AppContent.cmp');
@@ -39,6 +40,7 @@ var routes = (
 		</Route>
 		<DefaultRoute name="projectDefault" handler={AppContentDefaultCmp} />
 	</Route>
+	<NotFoundRoute handler={AppContentDefaultCmp} />
   </Route>
 );
 module.exports = routes;

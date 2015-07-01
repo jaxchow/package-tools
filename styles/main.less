@@ -114,21 +114,33 @@ html,body{
 		padding:0;
 	}
 
-	.projects-list li{
-		padding:10px;
-	}
-	.projects-list h5{
-		margin:0;
-	}
-	.projects-list .active{
-		background-color:#4799cf;
-		color:#fff;
+	.projects-list{
+		li{
+			padding:10px;
+		}
+		h5{
+			margin:0;
+		}
+		a{
+			:visited,:hover,:focus{
+				text-decoration: none;
+			}
+		}
+		.active{
+			li{
+				background-color:#4799cf;
+				color:#fff;
+				h5{
+					color:#fff;
+				}
+			}
+		}
 	}
 	
 	.log-pane{
 		margin:-21px -21px;
-		background:#000;
-		color:#fff;
+		background:#fff;
+		color:#000;
 		padding:10px;
 		border:1px solid #fff;
 	}

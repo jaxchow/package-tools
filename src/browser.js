@@ -19,15 +19,14 @@ app.on('open-url', function (event, url) {
 app.on('ready', function () {
   var mainWindow = new BrowserWindow({
     width:  1000,
-    height:  700,
+    height:  800,
     'min-width': 1000,
-    'min-height': 700,
+    'min-height': 800,
     'standard-window': true,
     resizable: true,
     frame: true,
     show: true,
   });
-  mainWindow.toggleDevTools()
 
   mainWindow.loadUrl(path.normalize('file://' + path.join(__dirname, '..', 'build/index.html')));
 
