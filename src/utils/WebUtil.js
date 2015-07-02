@@ -1,4 +1,5 @@
 var app = require('remote').require('app');
+var ReactTools = require('react-tools');
 var fs = require('fs');
 var util = require('./Util');
 var path = require('path');
@@ -19,9 +20,18 @@ var WebUtil = {
       var head = document.getElementsByTagName('head')[0];
       var script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = 'http://localhost:35729/livereload.js';
+      script.src = 'http://localhost:39393/livereload.js';
       head.appendChild(script);
     }
+  },
+  addJSXSupport:function(){
+	require.extensions['.jsx'] = function (module, filename) {
+		var fs = require("fs");
+		var content = fs.readFileSync(filename, 'utf8');
+		return module._compile(ReactTools.transform(content, {
+			harmony: true
+		}), filename);
+	};
   },
   addBugReporting: function () {
 	  /*

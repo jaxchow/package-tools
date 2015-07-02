@@ -4,6 +4,7 @@ var MenuItem = remote.require('menu-item');
 var React = require('react/addons');
 var Router = require('react-router');
 var NpmUtils= require("../utils/NpmUtils");
+var shell= require("shell");
 var Utils = require('../utils/Util');
 
 
@@ -66,6 +67,10 @@ var AppContentPackageCmp = React.createClass({
   contextTypes: {
     router: React.PropTypes.func
   },
+  handlerVisitRepo:function(e){
+	console.log(e.currentTarget.href);
+	shell.openExternal(e.currentTarget.href);
+  },
   render: function () {
 	let name= this.props.params.name;
 	let dir=this.props.query.path;
@@ -74,7 +79,7 @@ var AppContentPackageCmp = React.createClass({
 	content = (
 		<div className="package-panel">
 			<div className="package-header">
-				<h2>{pkg.name} <small>(ver:{pkg.version})</small></h2>
+				<h2><img src="github.png" /> <a href="http://github.com/jaxchow/hns-server" onClick={this.handlerVisitRepo}>{pkg.name}</a> <small>(ver:{pkg.version})</small></h2>
 				<p>{pkg.description}</p>
 				<div className="package-toolbar">
 					<AppPackageToolbarCmp scripts={pkg.scripts} dir={dir}/>
@@ -151,6 +156,7 @@ var AppPackageToolbarCmp = React.createClass({
 	content = (
 		<div role="toolbar" className="pull-left btn-toolbar">
 		  <div className="btn-group">
+
 			{btns}
 		  </div>
 		</div>

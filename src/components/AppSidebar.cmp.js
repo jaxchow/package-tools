@@ -1,5 +1,6 @@
 
 var React = require('react/addons');
+var Router = require('react-router');
 var ProjectListCmp=require('./AppProject.cmp').ProjectListCmp;
 
 var AppSidebarCmp = React.createClass({
@@ -31,6 +32,9 @@ var AppSidebarCmp = React.createClass({
 	side = (
 		<div className="app-sidebar">
             <div className="sidebar-header">
+			 <Router.Link to="projectDefault">
+				<span className="glyphicon glyphicon-home"></span>
+			 </Router.Link>
 				<input type="text" name="search" className="sidebar-search" value="" />
 			</div>
             <div className="sidebar-body">

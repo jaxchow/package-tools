@@ -71,7 +71,7 @@ gulp.task('styles', function () {
     .pipe(gulp.dest(options.dev ? './build' : './dist/osx/' + options.appFilename + '/Contents/Resources/app/build'))
     .pipe(gulpif(!options.dev, cssmin()))
     .pipe(concat('main.css'))
-    .pipe(gulpif(options.dev, livereload()));
+    .pipe(gulpif(options.dev, livereload(35730)));
 });
 
 gulp.task('download', function (cb) {
@@ -89,7 +89,7 @@ gulp.task('copy', function () {
   gulp.src('fonts/**')
     .pipe(gulpif(options.dev, changed('./build')))
     .pipe(gulp.dest(options.dev ? './build' : './dist/osx/' + options.appFilename + '/Contents/Resources/app/build'))
-    .pipe(gulpif(options.dev, livereload()));
+    .pipe(gulpif(options.dev, livereload({port:39393})));
 });
 
 gulp.task('dist', function () {

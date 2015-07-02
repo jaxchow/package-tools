@@ -18,10 +18,10 @@ app.on('open-url', function (event, url) {
 
 app.on('ready', function () {
   var mainWindow = new BrowserWindow({
-    width:  1000,
-    height:  800,
-    'min-width': 1000,
-    'min-height': 800,
+    width:  1200,
+    height:  700,
+    'min-width': 1200,
+    'min-height': 700,
     'standard-window': true,
     resizable: true,
     frame: true,
@@ -78,28 +78,4 @@ app.on('ready', function () {
     });
 
   });
-/*
-  autoUpdater.on('checking-for-update', function () {
-    console.log('Checking for update...');
-  });
-
-  autoUpdater.on('update-available', function () {
-    console.log('Update available.');
-  });
-
-  autoUpdater.on('update-not-available', function () {
-    console.log('Update not available.');
-  });
-
-  autoUpdater.on('update-downloaded', function (e, releaseNotes, releaseName, releaseDate, updateURL) {
-    console.log('Update downloaded.');
-    console.log(releaseNotes, releaseName, releaseDate, updateURL);
-    mainWindow.webContents.send('application:update-available');
-  });
-
-  autoUpdater.on('error', function (e, error) {
-    console.log('An error occured while checking for updates.');
-    console.log(error);
-  });
-  */
 });
