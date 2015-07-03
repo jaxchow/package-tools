@@ -1,7 +1,14 @@
-
+var remote = require('remote');
+var dialog =remote.require('dialog');
 var React = require('react/addons');
 var Router = require('react-router');
+var NpmUtils= require('../utils/NpmUtils');
 var ProjectListCmp=require('./AppProject.cmp').ProjectListCmp;
+var ReactBootstrap= require('react-bootstrap');
+var ButtonToolbar=ReactBootstrap.ButtonToolbar;
+var ButtonGroup=ReactBootstrap.ButtonGroup;
+var Button=ReactBootstrap.Button;
+var Glyphicon=ReactBootstrap.Glyphicon;
 
 var AppSidebarCmp = React.createClass({
   contextTypes: {
@@ -25,7 +32,12 @@ var AppSidebarCmp = React.createClass({
   //  $('.left .wrapper').height(window.innerHeight - 240);
   //  $('.right .wrapper').height(window.innerHeight / 2 - 100);
   },
-
+  handlerImportProject:function(){
+	dialog.showOpenDialog({ properties: [ 'openFile'],filters:[{ name: 'package.json', extensions: ['json']}]},function(file){
+		NpmUtils.importProject(file);
+	})
+		
+  },
   render: function () {
 
     let side;
@@ -40,7 +52,21 @@ var AppSidebarCmp = React.createClass({
             <div className="sidebar-body">
 				<ProjectListCmp projects={this.props.projects} />
 			</div>
-			<div className="sidebar-footer-bar"></div>
+			<div className="sidebar-footer-bar">
+				<ButtonToolbar>
+					<ButtonGroup bsSize='medium'>
+					  <Button onClick={this.handlerImportProject}><Glyphicon glyph='plus' /></Button>
+					  <Button><Glyphicon glyph='trash' /></Button>
+					  <Button><Glyphicon glyph='cloud' /></Button>
+					</ButtonGroup>
+
+					<ButtonGroup bsSize='medium'>
+					  <Button><Glyphicon glyph='fullscreen' /></Button>
+					  <Button><Glyphicon glyph='option-horizontal' /></Button>
+					</ButtonGroup>
+				</ButtonToolbar>	
+
+			</div>
    		</div>
 	);
     return side;

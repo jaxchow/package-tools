@@ -6,7 +6,9 @@ var Router = require('react-router');
 var NpmUtils= require("../utils/NpmUtils");
 var shell= require("shell");
 var Utils = require('../utils/Util');
-
+var ReactBootstrap= require('react-bootstrap');
+var Badge=ReactBootstrap.Badge;
+var Label=ReactBootstrap.Label;
 
 var ProjectItemCmp =React.createClass({
 	getInitialState:function(){
@@ -68,7 +70,6 @@ var AppContentPackageCmp = React.createClass({
     router: React.PropTypes.func
   },
   handlerVisitRepo:function(e){
-	console.log(e.currentTarget.href);
 	shell.openExternal(e.currentTarget.href);
   },
   render: function () {
@@ -76,16 +77,21 @@ var AppContentPackageCmp = React.createClass({
 	let dir=this.props.query.path;
 	let pkg= Utils.readPackagejson(dir);
     let content;
+	let labels;
+	labels=pkg.keywords && pkg.keywords.map(function(label){
+		return (<Label>{label}</Label>)
+	});
 	content = (
 		<div className="package-panel">
 			<div className="package-header">
-				<h2><img src="github.png" /> <a href="http://github.com/jaxchow/hns-server" onClick={this.handlerVisitRepo}>{pkg.name}</a> <small>(ver:{pkg.version})</small></h2>
+				<h2><a href="" onClick={this.handlerVisitRepo}><img src="github.png" /></a><a href="" onClick={this.handlerVisitRepo}>{pkg.name}</a><Badge>{pkg.version}</Badge><small>({pkg.main})</small></h2>
 				<p>{pkg.description}</p>
+				<p className="package-keywords">{labels}</p>
 				<div className="package-toolbar">
 					<AppPackageToolbarCmp scripts={pkg.scripts} dir={dir}/>
 					<ul className="nav nav-tabs package-nav-tabs">
-						<li className="active">
-						  <Router.Link to="pkgProto" {...this.props}>
+						<li>
+						  <Router.Link to="pkgProto" activeClass="active" {...this.props}>
 							Proto
 						  </Router.Link>
 						</li>
@@ -156,7 +162,6 @@ var AppPackageToolbarCmp = React.createClass({
 	content = (
 		<div role="toolbar" className="pull-left btn-toolbar">
 		  <div className="btn-group">
-
 			{btns}
 		  </div>
 		</div>

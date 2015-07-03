@@ -27,6 +27,15 @@ export default assign(Object.create(EventEmitter.prototype),{
 		});
 	})
   },
+  importProject (file){
+	var filename=path.basename(file);
+	var fileDir=path.dirname(file);
+	if(filename!='package.json'){
+		alert("亲！文件我不认识，请拖package.json");
+		return false;
+	}
+	this.add(fileDir);
+  },
   add (dirPath){
 	let self=this;
 	let proj={};

@@ -27,6 +27,7 @@ app.on('ready', function () {
     frame: true,
     show: true,
   });
+  mainWindow.toggleDevTools();
 
   mainWindow.loadUrl(path.normalize('file://' + path.join(__dirname, '..', 'build/index.html')));
 
