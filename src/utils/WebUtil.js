@@ -24,6 +24,9 @@ var WebUtil = {
       head.appendChild(script);
     }
   },
+  addDevelopTool:function(){
+	  //mainWindow.toggleDevTools();
+  },
   addJSXSupport:function(){
 	require.extensions['.jsx'] = function (module, filename) {
 		var fs = require("fs");

@@ -41,6 +41,7 @@
     "react": "^0.13.1",
     "react-ace": "^2.0.1",
     "react-bootstrap": "^0.20.3",
+	"react-tools":"0.13.3",
     "react-router": "^0.13.2",
     "request": "^2.55.0",
     "request-progress": "^0.3.1",

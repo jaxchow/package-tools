@@ -27,7 +27,10 @@ app.on('ready', function () {
     frame: true,
     show: true,
   });
-  mainWindow.toggleDevTools();
+  // 开发启用DevTools
+  if (process.env.NODE_ENV == 'development') {
+		mainWindow.toggleDevTools();
+  }
 
   mainWindow.loadUrl(path.normalize('file://' + path.join(__dirname, '..', 'build/index.html')));
 
@@ -79,4 +82,28 @@ app.on('ready', function () {
     });
 
   });
+/*
+  autoUpdater.on('checking-for-update', function () {
+    console.log('Checking for update...');
+  });
+
+  autoUpdater.on('update-available', function () {
+    console.log('Update available.');
+  });
+
+  autoUpdater.on('update-not-available', function () {
+    console.log('Update not available.');
+  });
+
+  autoUpdater.on('update-downloaded', function (e, releaseNotes, releaseName, releaseDate, updateURL) {
+    console.log('Update downloaded.');
+    console.log(releaseNotes, releaseName, releaseDate, updateURL);
+    mainWindow.webContents.send('application:update-available');
+  });
+
+  autoUpdater.on('error', function (e, error) {
+    console.log('An error occured while checking for updates.');
+    console.log(error);
+  });
+  */
 });

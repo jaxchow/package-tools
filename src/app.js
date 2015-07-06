@@ -5,7 +5,6 @@ var remote = require('remote');
 var Menu = remote.require('menu');
 var React = require('react');
 var ipc = require('ipc');
-//var metrics = require('./utils/MetricsUtil');
 var router = require('./router');
 var template = require('./menutemplate');
 var webUtil = require('./utils/WebUtil');

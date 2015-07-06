@@ -35,7 +35,7 @@ var AppPackageProtoPane = React.createClass({
       let DOM;
 		DOM = (
 		<div className="proto-pane pkg-pane">
-			 <AceEditor mode="javascript" theme="monokai" width="100%" value={pkgStr.toString()}/>
+			 <AceEditor mode="javascript" theme="monokai" width="100%" height="100%" value={pkgStr.toString()}/>
 		</div>
 	);
     return DOM;

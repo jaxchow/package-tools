@@ -9,6 +9,7 @@ var Utils = require('../utils/Util');
 var ReactBootstrap= require('react-bootstrap');
 var Badge=ReactBootstrap.Badge;
 var Label=ReactBootstrap.Label;
+var Glyphicon=ReactBootstrap.Glyphicon;
 
 var ProjectItemCmp =React.createClass({
 	getInitialState:function(){
@@ -156,7 +157,7 @@ var AppPackageToolbarCmp = React.createClass({
 	// 过滤preXXX postXXX 所有script
 	btns=Object.keys(this.props.scripts).map(scrp => {
 		if(/^pre|post\w+/.test(scrp)) return ;
-		return	<button className="btn btn-default" type="button" data-script={scrp} onClick={this.handlerClick}><span className="glyphicon glyphicon-align-left">{scrp}</span></button>
+		return	<button className="btn btn-default" type="button" data-script={scrp} onClick={this.handlerClick}><Glyphicon glyph='console' />{scrp}</button>
 	});
 
 	content = (

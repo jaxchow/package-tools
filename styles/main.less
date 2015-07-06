@@ -41,8 +41,31 @@ html,body{
 		border-radius:10px;
 	}
 	.app-sidebar .sidebar-body{
+		overflow-y:auto;
+		overflow-x:hidden;
 		flex:auto;
 		display:flex;
+	}
+	.app-sidebar .sidebar-dropdrap{
+		height:150px;
+		display:flex;
+		flex:0 0 auto;
+		border-width:1px 0 0 0;
+		border-style:solid;
+		border-color:#e5e5e5;
+		box-shadow: 0px 0 0 1px #c1c3c6;
+		opacity: 0.9;
+		#holder{
+			width:90%;
+			height:90%;
+			margin:auto;
+			line-height:130px;
+			font-size:14px;
+			text-align:center;
+			font-weight:bold;
+			border:3px dashed #c1c1c1;
+			background-color:#fafafa;
+		}
 	}
 	.app-sidebar .sidebar-footer-bar{
 		border-width:1px 0 0 0;
@@ -51,7 +74,7 @@ html,body{
 		box-shadow: 0px 0 0 1px #c1c3c6;
 		opacity: 0.9;
         display: flex;
-		height:40px;
+		height:50px;
         flex: 0 auto;
 	}
 	.btn-toolbar{
@@ -111,7 +134,17 @@ html,body{
 	}
 	.package-body{
         flex:auto;
-		overflow-y:auto;
+		overflow-y:hidden;
+        display: flex;
+		position:relative;
+		.pkg-pane{
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			top: 0;
+			overflow: auto;
+		}
 	}
 	.projects-list{
 		width:100%;
@@ -143,10 +176,10 @@ html,body{
 	}
 	
 	.log-pane{
-		background:#fff;
-		color:#000;
+		background:#000;
+		color:#fff;
 		padding:10px;
-		border:1px solid #fff;
+		border:0px;
 	}
 	.default-panel{
 		.logo{
